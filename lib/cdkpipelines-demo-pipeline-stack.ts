@@ -46,7 +46,7 @@ export class CdkpipelinesDemoPipelineStack extends Stack {
     });
     // This is where we add the application stages
     pipeline.addApplicationStage(devStage).addActions(new ManualApprovalAction({
-      actionName: "sandbox to dev promotion",
+      actionName: "SandboxToDev",
       externalEntityLink: devStage.urlOutput.toString()
     }));
 
