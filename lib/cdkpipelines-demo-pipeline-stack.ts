@@ -27,7 +27,7 @@ export class CdkpipelinesDemoPipelineStack extends Stack {
         oauthToken: SecretValue.secretsManager('github-token'),
         owner: 'ReidWeb',
         repo: 'cdk-pipelines-lab',
-        trigger: codepipeline_actions.GitHubTrigger.POLL,
+        trigger: codepipeline_actions.GitHubTrigger.WEBHOOK,
       }),
 
        // How it will be built and synthesized
