@@ -5,7 +5,7 @@ import { CdkpipelinesDemoPipelineStack } from '../lib/cdkpipelines-demo-pipeline
 const app = new App();
 
 new CdkpipelinesDemoPipelineStack(app, 'CdkpipelinesDemoPipelineStack', {
-  env: { account: '863920247840', region: 'eu-west-1' }, //Sandbox
+  env: { account: '452515633987', region: 'eu-west-1' }, //shared services profile - ACCOUNT1 in lab
 });
 
 app.synth();
