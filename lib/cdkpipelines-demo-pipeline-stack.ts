@@ -3,6 +3,7 @@ import * as codepipeline_actions from '@aws-cdk/aws-codepipeline-actions';
 import { Construct, SecretValue, Stack, StackProps } from '@aws-cdk/core';
 import { CdkPipeline, SimpleSynthAction } from "@aws-cdk/pipelines";
 import { CdkpipelinesDemoStage } from './cdkpipelines-demo-stage';
+import { ManualApprovalAction } from '@aws-cdk/aws-codepipeline-actions';
 
 
 /**
@@ -40,10 +41,14 @@ export class CdkpipelinesDemoPipelineStack extends Stack {
        }),
     });
 
-    // This is where we add the application stages
-    pipeline.addApplicationStage(new CdkpipelinesDemoStage(this, 'Sandbox', {
+    let devStage = new CdkpipelinesDemoStage(this, 'Sandbox', {
       env: { account: '863920247840', region: 'eu-west-1' } //Sandbox acc
-    })).addManualApprovalAction();
+    });
+    // This is where we add the application stages
+    pipeline.addApplicationStage(devStage).addActions(new ManualApprovalAction({
+      actionName: "sandbox to dev promotion",
+      externalEntityLink: devStage.urlOutput.toString()
+    }));
 
     pipeline.addApplicationStage(new CdkpipelinesDemoStage(this, 'Dev', {
       env: { account: '857501034047', region: 'eu-west-1' } //Dev acc
