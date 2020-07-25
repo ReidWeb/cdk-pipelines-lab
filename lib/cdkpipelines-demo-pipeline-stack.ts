@@ -43,11 +43,11 @@ export class CdkpipelinesDemoPipelineStack extends Stack {
     // This is where we add the application stages
     pipeline.addApplicationStage(new CdkpipelinesDemoStage(this, 'Sandbox', {
       env: { account: '863920247840', region: 'eu-west-1' } //Sandbox acc
-    }));
+    })).addManualApprovalAction();
 
     pipeline.addApplicationStage(new CdkpipelinesDemoStage(this, 'Dev', {
       env: { account: '857501034047', region: 'eu-west-1' } //Dev acc
-    })).addManualApprovalAction();
+    }));
 
   }
 }
