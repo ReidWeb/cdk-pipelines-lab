@@ -51,7 +51,7 @@ export class CdkpipelinesDemoPipelineStack extends Stack {
       env: { account: '857501034047', region: 'eu-west-1' } //Dev acc
     })).addActions(new ManualApprovalAction({
       actionName: "SandboxToDev",
-      externalEntityLink: devStage.urlOutput.value
+      externalEntityLink: devStage.urlOutput.value.toString()
     }));
 
   }
