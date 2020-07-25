@@ -45,13 +45,13 @@ export class CdkpipelinesDemoPipelineStack extends Stack {
       env: { account: '863920247840', region: 'eu-west-1' } //Sandbox acc
     });
     // This is where we add the application stages
-    pipeline.addApplicationStage(devStage).addActions(new ManualApprovalAction({
-      actionName: "SandboxToDev",
-      externalEntityLink: devStage.urlOutput.toString()
-    }));
+    pipeline.addApplicationStage(devStage)
 
     pipeline.addApplicationStage(new CdkpipelinesDemoStage(this, 'Dev', {
       env: { account: '857501034047', region: 'eu-west-1' } //Dev acc
+    })).addActions(new ManualApprovalAction({
+      actionName: "SandboxToDev",
+      externalEntityLink: devStage.urlOutput.value()
     }));
 
   }
